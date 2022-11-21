@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| nickname           | string | null: false |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
-| last_name          | string | null: false |
-| first_name         | string | null: false |
-| last_name_kana     | string | null: false |
-| first_name_kana    | string | null: false |
-| birthday           | string | null: false |
+| Column             | Type   | Options                 |
+| ------------------ | ------ | ----------------------- |
+| nickname           | string | null: false             |
+| email              | string | null: false unique:true |
+| encrypted_password | string | null: false             |
+| last_name          | string | null: false             |
+| first_name         | string | null: false             |
+| last_name_kana     | string | null: false             |
+| first_name_kana    | string | null: false             |
+| birthday           | data   | null: false             |
 
 - has_many :items
 - has_many :orders
@@ -42,17 +42,18 @@
 
 - belongs_to :user
 - belongs_to :item
+- belongs_to :address
 
 ## addresses テーブル
 
 | Column         | Type        | Options                        |
 | -------------- | ----------- | ------------------------------ |
-| orders         | references  | null: false, foreign_key: true |
+| order          | references  | null: false, foreign_key: true |
 | postcode       | string      | null: false                    |
 | prefecture_id  | integer     | null: false                    |
 | city           | string      | null: false                    |
 | block          | string      | null: false                    |
-| building       | string      | null: false                    |
+| building       | string      |                                |
 | phone_number   | string      | null: false                    |
 
 - belongs_to :order
