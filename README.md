@@ -8,23 +8,25 @@
 | email              | string | null: false |
 | encrypted_password | string | null: false |
 
-## rooms テーブル
+- has_many :items
+- has_many :comments
 
-| Column | Type   | Options     |
-| ------ | ------ | ----------- |
-| name   | string | null: false |
+## items テーブル
 
-## room_users テーブル
+| Column    | Type   | Options     |
+| --------- | ------ | ----------- |
+| name      | string | null: false |
+| content   | string |             |
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| user   | references | null: false, foreign_key: true |
-| room   | references | null: false, foreign_key: true |
+- belongs_to :user
+- has_many :comments
 
-## messages テーブル
+## comments テーブル
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| content | string     |                                |
-| user    | references | null: false, foreign_key: true |
-| room    | references | null: false, foreign_key: true |
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| user      | references | null: false, foreign_key: true |
+| content   | string     |                                |
+
+- belongs_to :user
+- belongs_to :item
