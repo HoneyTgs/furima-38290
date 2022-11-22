@@ -2,29 +2,59 @@
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| name               | string | null: false |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
+| Column             | Type   | Options                 |
+| ------------------ | ------ | ----------------------- |
+| nickname           | string | null: false             |
+| email              | string | null: false unique:true |
+| encrypted_password | string | null: false             |
+| last_name          | string | null: false             |
+| first_name         | string | null: false             |
+| last_name_kana     | string | null: false             |
+| first_name_kana    | string | null: false             |
+| birthday           | data   | null: false             |
 
-## rooms テーブル
+- has_many :items
+- has_many :orders
 
-| Column | Type   | Options     |
-| ------ | ------ | ----------- |
-| name   | string | null: false |
+## items テーブル
 
-## room_users テーブル
+| Column                | Type       | Options                       |
+| --------------------- | ---------- | ----------------------------- |
+| user                  | references | null: false foreign_key: true |
+| name                  | string     | null: false                   |
+| description           | text       | null: false                   |
+| category_id           | integer    | null: false                   |
+| item_status_id        | integer    | null: false                   |
+| shopping_cost_id      | integer    | null: false                   |
+| prefecture_id         | integer    | null: false                   |
+| shopping_date_id      | integer    | null: false                   |
+| price                 | integer    | null: false                   |
+ 
+- belongs_to :user
+- has_one :order
+
+## orders テーブル
 
 | Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
+| --- -- | ---------- | ------------------------------ |
 | user   | references | null: false, foreign_key: true |
-| room   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
-## messages テーブル
+- belongs_to :user
+- belongs_to :item
+- has_one :address
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| content | string     |                                |
-| user    | references | null: false, foreign_key: true |
-| room    | references | null: false, foreign_key: true |
+## addresses テーブル
+
+| Column         | Type        | Options                        |
+| -------------- | ----------- | ------------------------------ |
+| order          | references  | null: false, foreign_key: true |
+| postcode       | string      | null: false                    |
+| prefecture_id  | integer     | null: false                    |
+| city           | string      | null: false                    |
+| block          | string      | null: false                    |
+| building       | string      |                                |
+| phone_number   | string      | null: false                    |
+
+- belongs_to :order
+
