@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   validates :nickname,        presence: true 
 
-  VALID_NAME_REGEX =/\A[ぁ-んァ-ン一-龥々]+\z/
+  VALID_NAME_REGEX =/\A[ぁ-んァ-ン一-龥]+\z/
 
   with_options presence: true do
   validates :last_name, format: { with: VALID_NAME_REGEX, message: 'Full-width characters.' }
