@@ -1,8 +1,7 @@
 class ItemsController < ApplicationController
+  before_action :move_to_index, only: [:edit]
 
   def index
-    @items = Item.all
-    @item = Item.new
   end
 
   def new
@@ -10,7 +9,6 @@ class ItemsController < ApplicationController
   end  
 
   def create
-    @item = Item.create(item_params)
     if @item.save
       redirect_to root_path
     else
@@ -19,7 +17,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end  
   
   private
