@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
-
+  
   validates :nickname,        presence: true 
 
   VALID_NAME_REGEX =/\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/
