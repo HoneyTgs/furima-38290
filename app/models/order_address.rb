@@ -8,6 +8,7 @@ class OrderAddress
     validates :address
     validates :phone_number, format: { with: /\d{10,11}/}, length: {maximum: 11}
     validates :user_id
+    validates :item_id
   end  
 
   validates :token, presence: true
