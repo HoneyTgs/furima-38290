@@ -10,7 +10,6 @@ class AddressesController < ApplicationController
   end  
 
   def create
-    binding.pry
     @order_address = OrderAddress.new(address_params)  
     if @order_address.valid?
       pay_item

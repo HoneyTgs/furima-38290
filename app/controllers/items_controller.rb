@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end  
     unless @item.user_id == current_user.id
-      redirect_to action: :index
+      :index
     end
   end
 
