@@ -62,9 +62,6 @@ end
 
 group :production do
   gem 'pg'
-end
-
-group :production do
   gem 'unicorn', '5.4.1'
 end
 
@@ -75,3 +72,4 @@ gem 'image_processing', '~> 1.2'
 gem 'pry-rails'
 gem 'payjp'
 gem "aws-sdk-s3", require: false
+
